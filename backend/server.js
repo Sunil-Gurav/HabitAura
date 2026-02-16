@@ -3199,7 +3199,32 @@ app.use((err, req, res, next) => {
   })
 })
 
-// 404 handler
+// Root route - Health check
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'HabitSpark API is running',
+    status: 'OK',
+    version: '1.0.0',
+    timestamp: new Date().toISOString()
+  })
+})
+
+// API info route
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'HabitSpark API',
+    version: '1.0.0',
+    endpoints: {
+      auth: '/api/auth/*',
+      habits: '/api/habits/*',
+      goals: '/api/goals/*',
+      rewards: '/api/rewards/*',
+      journal: '/api/journal/*'
+    }
+  })
+})
+
+// 404 handler - Must be last
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Route not found' })
 })
