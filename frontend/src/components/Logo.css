@@ -1,0 +1,101 @@
+/* Logo Component Styles */
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-clickable {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo-clickable:hover {
+  transform: scale(1.05);
+}
+
+.logo-image-container {
+  position: relative;
+}
+
+.logo-image {
+  object-fit: contain;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.logo-fallback {
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #22d3ee, #a855f7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.logo-fallback-text {
+  color: white;
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+.logo-text {
+  font-weight: bold;
+  background: linear-gradient(45deg, #22d3ee, #a855f7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Size Variations */
+.logo-small .logo-image,
+.logo-small .logo-fallback {
+  width: 2rem;
+  height: 2rem;
+}
+
+.logo-small .logo-text {
+  font-size: 1.125rem;
+}
+
+.logo-medium .logo-image,
+.logo-medium .logo-fallback {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.logo-medium .logo-text {
+  font-size: 1.5rem;
+}
+
+.logo-large .logo-image,
+.logo-large .logo-fallback {
+  width: 3rem;
+  height: 3rem;
+}
+
+.logo-large .logo-text {
+  font-size: 1.875rem;
+}
+
+.logo-xlarge .logo-image,
+.logo-xlarge .logo-fallback {
+  width: 4rem;
+  height: 4rem;
+}
+
+.logo-xlarge .logo-text {
+  font-size: 2.5rem;
+}
+
+/* Hover Effects */
+.logo-wrapper:hover .logo-image {
+  transform: scale(1.1);
+}
+
+.logo-wrapper:hover .logo-text {
+  background: linear-gradient(45deg, #06b6d4, #3b82f6, #a855f7);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
