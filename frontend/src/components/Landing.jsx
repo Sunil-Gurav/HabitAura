@@ -3,6 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Logo from './Logo'
 import './Landing.css'
+import heroImg1 from '../assets/images/hero-img1.jpg'
+import heroImg2 from '../assets/images/hero-img2.jpg'
+import heroImg3 from '../assets/images/hero-img3.jpg'
+import heroImg4 from '../assets/images/hero-img4.jpg'
+import heroImg5 from '../assets/images/hero-img5.jpg'
+import heroImg6 from '../assets/images/hero-img6.jpg'
+import heroImg7 from '../assets/images/hero-img7.jpg'
+import heroImg8 from '../assets/images/hero-img8.jpg'
 
 const Landing = () => {
   const [scrollY, setScrollY] = useState(0)
@@ -255,7 +263,7 @@ const Landing = () => {
                 {/* Main Image */}
                 <div className="main-image">
                   <img 
-                    src="/src/assets/images/hero-img3.jpg" 
+                    src={heroImg3} 
                     alt="Habit Building" 
                     className="main-img"
                   />
@@ -278,7 +286,7 @@ const Landing = () => {
                 {/* Secondary Image */}
                 <div className="secondary-image">
                   <img 
-                    src="/src/assets/images/hero-img1.jpg" 
+                    src={heroImg1} 
                     alt="Progress Tracking" 
                     className="secondary-img"
                   />
@@ -309,42 +317,42 @@ const Landing = () => {
           <div className="features-grid">
             {[
               {
-                image: '/src/assets/images/hero-img5.jpg',
+                image: heroImg5,
                 title: 'Habit Tutorials',
                 description: 'Learn about effective strategies, common pitfalls, and the science behind habit formation to help you create lasting positive changes in your life.',
                 icon: '🎓',
                 gradient: 'blue-cyan'
               },
               {
-                image: '/src/assets/images/hero-img4.jpg',
+                image: heroImg4,
                 title: 'Stay Organized',
                 description: 'Stay organized and on track with our editable habits and goals feature combined with a to-do list. Easily set, edit, and update your habits.',
                 icon: '📋',
                 gradient: 'emerald-green'
               },
               {
-                image: '/src/assets/images/hero-img2.jpg',
+                image: heroImg2,
                 title: 'Progress Visualization',
                 description: 'Progress visualization helps users see their habit tracking data in a clear and engaging manner. Stay motivated with visual insights.',
                 icon: '📊',
                 gradient: 'purple-pink'
               },
               {
-                image: '/src/assets/images/hero-img7.jpg',
+                image: heroImg7,
                 title: 'Responsive Design',
                 description: 'Ensuring an optimal viewing experience across all devices, from desktops to smartphones with flexible layouts and adaptive elements.',
                 icon: '📱',
                 gradient: 'orange-amber'
               },
               {
-                image: '/src/assets/images/hero-img8.jpg',
+                image: heroImg8,
                 title: 'Privacy & Security',
                 description: 'We prioritize your privacy and security by implementing robust measures to ensure your data remains safe with high security standards.',
                 icon: '🔒',
                 gradient: 'red-pink'
               },
               {
-                image: '/src/assets/images/hero-img6.jpg',
+                image: heroImg6,
                 title: 'Smart Analytics',
                 description: 'Get detailed insights into your habit patterns, success rates, and areas for improvement with our advanced analytics dashboard.',
                 icon: '🧠',
