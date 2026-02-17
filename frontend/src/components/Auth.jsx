@@ -1,4 +1,5 @@
 import axios from 'axios'
+import API_URL from '../config/api'
 import '../assets/login.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -39,7 +40,7 @@ const Auth = () => {
   const loginForm = async (email, password) => {
     setIsLoading(true)
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
+      const response = await axios.post(`${API_URL}/api/auth/login`, {
         email: email,
         password: password
       })
@@ -65,7 +66,7 @@ const Auth = () => {
     try {
       console.log('Attempting to send OTP to:', email) // Debug log
       
-      const response = await axios.post('http://localhost:5000/api/auth/send-otp', {
+      const response = await axios.post(`${API_URL}/api/auth/send-otp`, {
         username: username,
         email: email,
         password: password
@@ -106,7 +107,7 @@ const Auth = () => {
 
     setIsLoading(true)
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/verify-otp', {
+      const response = await axios.post(`${API_URL}/api/auth/verify-otp`, {
         email: email,
         otp: otp
       })
@@ -139,7 +140,7 @@ const Auth = () => {
     
     setIsLoading(true)
     try {
-      await axios.post('http://localhost:5000/api/auth/send-otp', pendingUserData)
+      await axios.post(`${API_URL}/api/auth/send-otp`, pendingUserData)
       alert('OTP resent to your email')
     } catch (error) {
       if (error.code === 'ECONNREFUSED') {

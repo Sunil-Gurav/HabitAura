@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import API_URL from '../config/api'
 import Logo from './Logo'
 import './Landing.css'
 import heroImg1 from '../assets/images/hero-img1.jpg'
@@ -27,7 +28,7 @@ const Landing = () => {
       const token = localStorage.getItem('accessToken')
       if (token) {
         try {
-          await axios.get('http://localhost:5000/api/auth/me', {
+          await axios.get('${API_URL}/api/auth/me', {
             headers: {
               Authorization: `Bearer ${token}`
             }

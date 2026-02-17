@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import API_URL from '../config/api'
 import Sidebar from './Sidebar'
 import './Dashboard.css'
 
@@ -345,7 +346,7 @@ const Dashboard = () => {
         params.append('category', category)
       }
       
-      const response = await axios.get(`http://localhost:5000/api/habits?${params}`, {
+      const response = await axios.get(`${API_URL}/api/habits?${params}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -383,7 +384,7 @@ const Dashboard = () => {
   const fetchAnalytics = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.get('http://localhost:5000/api/habits/analytics', {
+      const response = await axios.get('${API_URL}/api/habits/analytics', {
         headers: { Authorization: `Bearer ${token}` }
       })
       setAnalytics(response.data)
@@ -403,7 +404,7 @@ const Dashboard = () => {
         params.append('status', status)
       }
       
-      const response = await axios.get(`http://localhost:5000/api/goals?${params}`, {
+      const response = await axios.get(`${API_URL}/api/goals?${params}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setGoals(response.data.goals)
@@ -415,7 +416,7 @@ const Dashboard = () => {
   const fetchGoalAnalytics = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.get('http://localhost:5000/api/goals/analytics', {
+      const response = await axios.get('${API_URL}/api/goals/analytics', {
         headers: { Authorization: `Bearer ${token}` }
       })
       setGoalAnalytics(response.data)
@@ -433,7 +434,7 @@ const Dashboard = () => {
       }
       params.append('redeemed', redeemed.toString())
       
-      const response = await axios.get(`http://localhost:5000/api/rewards?${params}`, {
+      const response = await axios.get(`${API_URL}/api/rewards?${params}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setRewards(response.data.rewards)
@@ -446,7 +447,7 @@ const Dashboard = () => {
   const fetchPointsHistory = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.get('http://localhost:5000/api/rewards/points', {
+      const response = await axios.get('${API_URL}/api/rewards/points', {
         headers: { Authorization: `Bearer ${token}` }
       })
       setPointsHistory(response.data.history)
@@ -470,7 +471,7 @@ const Dashboard = () => {
         }
       })
       
-      const response = await axios.get(`http://localhost:5000/api/journal?${params}`, {
+      const response = await axios.get(`${API_URL}/api/journal?${params}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setJournalEntries(response.data.entries)
@@ -483,7 +484,7 @@ const Dashboard = () => {
   const fetchJournalAnalytics = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.get('http://localhost:5000/api/journal/analytics', {
+      const response = await axios.get('${API_URL}/api/journal/analytics', {
         headers: { Authorization: `Bearer ${token}` }
       })
       setJournalAnalytics(response.data)
@@ -496,7 +497,7 @@ const Dashboard = () => {
   const fetchUserSettings = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.get('http://localhost:5000/api/auth/settings', {
+      const response = await axios.get('${API_URL}/api/auth/settings', {
         headers: { Authorization: `Bearer ${token}` }
       })
       if (response.data.settings) {
@@ -510,7 +511,7 @@ const Dashboard = () => {
   const updateUserSettings = async (settingsUpdate) => {
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.put('http://localhost:5000/api/auth/settings', settingsUpdate, {
+      await axios.put('${API_URL}/api/auth/settings', settingsUpdate, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -597,7 +598,7 @@ const Dashboard = () => {
         }
       })
       
-      const response = await axios.put('http://localhost:5000/api/auth/profile', dataToSend, {
+      const response = await axios.put('${API_URL}/api/auth/profile', dataToSend, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -670,7 +671,7 @@ const Dashboard = () => {
     
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.put('http://localhost:5000/api/auth/change-password', {
+      await axios.put('${API_URL}/api/auth/change-password', {
         currentPassword: passwordData.currentPassword,
         newPassword: passwordData.newPassword
       }, {
@@ -723,7 +724,7 @@ const Dashboard = () => {
     
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.delete('http://localhost:5000/api/auth/account', {
+      await axios.delete('${API_URL}/api/auth/account', {
         headers: { Authorization: `Bearer ${token}` },
         data: { password: deleteAccountData.password }
       })
@@ -749,7 +750,7 @@ const Dashboard = () => {
         exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Exporting...'
       }
       
-      const response = await axios.get('http://localhost:5000/api/auth/export-data', {
+      const response = await axios.get('${API_URL}/api/auth/export-data', {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -848,7 +849,7 @@ const Dashboard = () => {
       }
 
       try {
-        const response = await axios.get('http://localhost:5000/api/auth/me', {
+        const response = await axios.get('${API_URL}/api/auth/me', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -1026,7 +1027,7 @@ const Dashboard = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.post('http://localhost:5000/api/habits', newHabit, {
+      await axios.post('${API_URL}/api/habits', newHabit, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1050,7 +1051,7 @@ const Dashboard = () => {
   const handleCompleteHabit = async (habitId) => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.post(`http://localhost:5000/api/habits/${habitId}/complete`, {}, {
+      const response = await axios.post(`${API_URL}/api/habits/${habitId}/complete`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1087,7 +1088,7 @@ const Dashboard = () => {
     if (window.confirm('Are you sure you want to delete this habit?')) {
       try {
         const token = localStorage.getItem('accessToken')
-        await axios.delete(`http://localhost:5000/api/habits/${habitId}`, {
+        await axios.delete(`${API_URL}/api/habits/${habitId}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         await fetchHabits(activeCategory)
@@ -1116,7 +1117,7 @@ const Dashboard = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.put(`http://localhost:5000/api/habits/${editingHabit._id}`, newHabit, {
+      await axios.put(`${API_URL}/api/habits/${editingHabit._id}`, newHabit, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1147,7 +1148,7 @@ const Dashboard = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.post('http://localhost:5000/api/goals', newGoal, {
+      await axios.post('${API_URL}/api/goals', newGoal, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1190,7 +1191,7 @@ const Dashboard = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.put(`http://localhost:5000/api/goals/${editingGoal._id}`, newGoal, {
+      await axios.put(`${API_URL}/api/goals/${editingGoal._id}`, newGoal, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1218,7 +1219,7 @@ const Dashboard = () => {
     if (window.confirm('Are you sure you want to delete this goal?')) {
       try {
         const token = localStorage.getItem('accessToken')
-        await axios.delete(`http://localhost:5000/api/goals/${goalId}`, {
+        await axios.delete(`${API_URL}/api/goals/${goalId}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         await fetchGoals(activeGoalCategory, activeGoalStatus)
@@ -1233,7 +1234,7 @@ const Dashboard = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.put(`http://localhost:5000/api/goals/${progressGoal._id}/progress`, progressUpdate, {
+      await axios.put(`${API_URL}/api/goals/${progressGoal._id}/progress`, progressUpdate, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1288,7 +1289,7 @@ const Dashboard = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.post('http://localhost:5000/api/rewards', newReward, {
+      await axios.post('${API_URL}/api/rewards', newReward, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1326,7 +1327,7 @@ const Dashboard = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.put(`http://localhost:5000/api/rewards/${editingReward._id}`, newReward, {
+      await axios.put(`${API_URL}/api/rewards/${editingReward._id}`, newReward, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1351,7 +1352,7 @@ const Dashboard = () => {
     if (window.confirm('Are you sure you want to delete this reward?')) {
       try {
         const token = localStorage.getItem('accessToken')
-        await axios.delete(`http://localhost:5000/api/rewards/${rewardId}`, {
+        await axios.delete(`${API_URL}/api/rewards/${rewardId}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         await fetchRewards(activeRewardCategory, showRedeemed)
@@ -1365,7 +1366,7 @@ const Dashboard = () => {
     if (window.confirm('Are you sure you want to redeem this reward?')) {
       try {
         const token = localStorage.getItem('accessToken')
-        const response = await axios.post(`http://localhost:5000/api/rewards/${rewardId}/redeem`, {}, {
+        const response = await axios.post(`${API_URL}/api/rewards/${rewardId}/redeem`, {}, {
           headers: { Authorization: `Bearer ${token}` }
         })
         
@@ -1405,7 +1406,7 @@ const Dashboard = () => {
         tomorrowGoals: newJournal.tomorrowGoals.filter(item => item.trim() !== '')
       }
       
-      const response = await axios.post('http://localhost:5000/api/journal', journalData, {
+      const response = await axios.post('${API_URL}/api/journal', journalData, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1466,7 +1467,7 @@ const Dashboard = () => {
         tomorrowGoals: newJournal.tomorrowGoals.filter(item => item.trim() !== '')
       }
       
-      await axios.put(`http://localhost:5000/api/journal/${editingJournal._id}`, journalData, {
+      await axios.put(`${API_URL}/api/journal/${editingJournal._id}`, journalData, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1496,7 +1497,7 @@ const Dashboard = () => {
     if (window.confirm('Are you sure you want to delete this journal entry?')) {
       try {
         const token = localStorage.getItem('accessToken')
-        await axios.delete(`http://localhost:5000/api/journal/${entryId}`, {
+        await axios.delete(`${API_URL}/api/journal/${entryId}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         await fetchJournalEntries(journalFilters)

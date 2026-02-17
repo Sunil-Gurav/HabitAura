@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
+import API_URL from '../config/api'
 
 const ForgotPassword = ({ isOpen, onClose }) => {
   const [step, setStep] = useState(1) // 1: email, 2: otp, 3: new password
@@ -18,7 +19,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
     setMessage('')
 
     try {
-      await axios.post('http://localhost:5000/api/auth/forgot-password', { email })
+      await axios.post('${API_URL}/api/auth/forgot-password', { email })
       setMessage('OTP sent to your email successfully!')
       setStep(2)
     } catch (error) {
@@ -35,7 +36,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
     setMessage('')
 
     try {
-      await axios.post('http://localhost:5000/api/auth/verify-reset-otp', { email, otp })
+      await axios.post('${API_URL}/api/auth/verify-reset-otp', { email, otp })
       setMessage('OTP verified successfully!')
       setStep(3)
     } catch (error) {
@@ -63,7 +64,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
     setMessage('')
 
     try {
-      await axios.post('http://localhost:5000/api/auth/reset-password', {
+      await axios.post('${API_URL}/api/auth/reset-password', {
         email,
         otp,
         newPassword
