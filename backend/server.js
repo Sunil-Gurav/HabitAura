@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
 const { body, validationResult } = require('express-validator')
+const connectDB = require('./db')
 require('dotenv').config()
 
 const app = express()
@@ -33,16 +34,30 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: true }))
 
-// Database connection
-console.log('Attempting to connect to MongoDB:', process.env.MONGODB_URI || 'mongodb://localhost:27017/habitspark1')
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/habitspark1')
-  .then(() => {
-    console.log('✅ Connected to MongoDB database successfully')
+// Database connection for serverless
+if (process.env.VERCEL) {
+  // Serverless: Connect on each request
+  app.use(async (req, res, next) => {
+    try {
+      await connectDB()
+      next()
+    } catch (error) {
+      console.error('Database connection failed:', error)
+      res.status(500).json({ message: 'Database connection error' })
+    }
   })
-  .catch((error) => {
-    console.error('❌ MongoDB connection error:', error.message)
-    console.log('Server will continue without database connection')
-  })
+} else {
+  // Traditional: Connect once
+  console.log('Attempting to connect to MongoDB:', process.env.MONGODB_URI || 'mongodb://localhost:27017/habitspark1')
+  mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/habitspark1')
+    .then(() => {
+      console.log('✅ Connected to MongoDB database successfully')
+    })
+    .catch((error) => {
+      console.error('❌ MongoDB connection error:', error.message)
+      console.log('Server will continue without database connection')
+    })
+}
 
 // ==================== MODELS ====================
 
