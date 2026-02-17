@@ -18,6 +18,12 @@ body {
   padding: 0;
 }
 
+html {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
 
 .container {
   position: relative;
@@ -345,14 +351,24 @@ form.sign-in-form {
 @media (max-width: 870px) {
   .container {
     min-height: 100vh;
-    height: auto;
-    overflow-y: auto;
+    max-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
   }
+  
+  body {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+  
   .signin-signup {
     width: 100%;
     top: 95%;
     transform: translate(-50%, -100%);
     transition: 1s 0.8s ease-in-out;
+    max-height: 70vh;
+    overflow-y: auto;
   }
   .signin-signup,
   .container.sign-up-mode .signin-signup {
@@ -446,11 +462,28 @@ form.sign-in-form {
 }
 
 @media (max-width: 570px) {
+  body {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .container {
+    overflow: hidden;
+    height: 100vh;
+    max-height: 100vh;
+  }
+  
   form {
     padding: 0.75rem 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
   }
   .sign-up-form {
     padding: 0.75rem 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
   }
   .image {
     display: none;

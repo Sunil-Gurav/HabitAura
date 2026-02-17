@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import LoginForm from './LoginForm'
 import SignUp from './SignupForm'
 import logo from '../assets/logo.png'
+import logSvg from '../assets/log.svg'
+import registerSvg from '../assets/register.svg'
 
 const Auth = () => {
   const navigate = useNavigate()
@@ -183,7 +185,7 @@ const Auth = () => {
               Sign up
             </button>
           </div>
-          <img src='/src/assets/log.svg' className='image' alt='Login illustration' />
+          <img src={logSvg} className='image' alt='Login illustration' />
         </div>
         <div className='panel right-panel'>
           <div className='content'>
@@ -202,7 +204,7 @@ const Auth = () => {
               Sign In
             </button>
           </div>
-          <img src='/src/assets/register.svg' className='image' alt='Register illustration' />
+          <img src={registerSvg} className='image' alt='Register illustration' />
         </div>
       </div>
     </div>
