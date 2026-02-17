@@ -40,7 +40,8 @@ body {
   position: relative;
   min-height: 100vh;
   background: radial-gradient(ellipse at top, #0f172a 0%, #0a0a0f 70%);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Show default cursor globally */
@@ -1212,6 +1213,19 @@ html {
 
 /* Enhanced Mobile Responsive Design */
 @media (max-width: 768px) {
+  /* Enable scroll on mobile */
+  body {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+  
+  .landing-container {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    min-height: 100vh;
+    height: auto;
+  }
+  
   /* Restore cursor on mobile */
   *, html, body, #root {
     cursor: auto !important;
