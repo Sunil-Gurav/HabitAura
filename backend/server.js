@@ -765,12 +765,27 @@ const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString()
 }
 
-// Email transporter
+// Email transporter with better configuration
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false, // true for 465, false for other ports
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
+})
+
+// Verify transporter configuration
+transporter.verify(function(error, success) {
+  if (error) {
+    console.error('❌ Email transporter verification failed:', error)
+    console.log('Please check EMAIL_USER and EMAIL_PASS environment variables')
+  } else {
+    console.log('✅ Email server is ready to send messages')
   }
 })
 
@@ -2584,8 +2599,7 @@ app.post('/api/auth/send-otp', [
     console.log('OTP sent successfully to:', email)
     res.json({
       message: 'OTP sent successfully to your email',
-      email: email,
-      otp: otp // Temporarily showing OTP for testing
+      email: email
     })
 
   } catch (error) {
@@ -2782,8 +2796,7 @@ app.post('/api/auth/forgot-password', [
 
     res.json({
       message: 'Password reset OTP sent to your email',
-      email: email,
-      otp: otp // Temporarily showing OTP for testing
+      email: email
     })
 
   } catch (error) {

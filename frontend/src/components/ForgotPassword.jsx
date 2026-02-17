@@ -20,13 +20,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
 
     try {
       const response = await axios.post(`${API_URL}/api/auth/forgot-password`, { email })
-      
-      // Show OTP if available in response (for testing)
-      if (response.data.otp) {
-        setMessage(`OTP sent to your email successfully!\n\nFor testing: Your OTP is ${response.data.otp}`)
-      } else {
-        setMessage('OTP sent to your email successfully!')
-      }
+      setMessage('OTP sent to your email successfully!')
       setStep(2)
     } catch (error) {
       setError(error.response?.data?.message || 'Failed to send OTP')
