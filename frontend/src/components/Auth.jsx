@@ -74,7 +74,13 @@ const Auth = () => {
       
       console.log('OTP response:', response.data) // Debug log
       setPendingUserData({ username, email, password })
-      alert('OTP sent to your email. Please check your inbox.')
+      
+      // Show OTP if available in response (for testing)
+      if (response.data.otp) {
+        alert(`OTP sent to your email.\n\nFor testing: Your OTP is ${response.data.otp}\n\nPlease check your inbox or use this OTP.`)
+      } else {
+        alert('OTP sent to your email. Please check your inbox.')
+      }
       return true
     } catch (error) {
       console.error('Signup error:', error) // Debug log

@@ -2585,7 +2585,7 @@ app.post('/api/auth/send-otp', [
     res.json({
       message: 'OTP sent successfully to your email',
       email: email,
-      otp: process.env.NODE_ENV === 'development' ? otp : undefined // Show OTP in dev mode for testing
+      otp: otp // Temporarily showing OTP for testing
     })
 
   } catch (error) {
@@ -2783,7 +2783,7 @@ app.post('/api/auth/forgot-password', [
     res.json({
       message: 'Password reset OTP sent to your email',
       email: email,
-      otp: process.env.NODE_ENV === 'development' ? otp : undefined // Show OTP in dev mode
+      otp: otp // Temporarily showing OTP for testing
     })
 
   } catch (error) {
