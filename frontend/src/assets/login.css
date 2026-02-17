@@ -8,27 +8,26 @@
 body,
 input {
   font-family: 'Poppins', sans-serif;
-  overflow: hidden;
 }
 
 body {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 html {
-  overflow: hidden;
   width: 100%;
-  height: 100%;
+  overflow-x: hidden;
 }
 
 
 .container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #081b29;
   overflow: hidden;
   display: flex;
@@ -351,15 +350,14 @@ form.sign-in-form {
 @media (max-width: 870px) {
   .container {
     min-height: 100vh;
-    max-height: 100vh;
-    height: 100vh;
-    overflow: hidden;
+    height: auto;
+    overflow-y: auto;
+    padding: 2rem 0;
   }
   
   body {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   
   .signin-signup {
@@ -367,8 +365,6 @@ form.sign-in-form {
     top: 95%;
     transform: translate(-50%, -100%);
     transition: 1s 0.8s ease-in-out;
-    max-height: 70vh;
-    overflow-y: auto;
   }
   .signin-signup,
   .container.sign-up-mode .signin-signup {
@@ -463,38 +459,27 @@ form.sign-in-form {
 
 @media (max-width: 570px) {
   body {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   
   .container {
-    overflow: hidden;
-    height: 100vh;
-    max-height: 100vh;
+    min-height: 100vh;
+    height: auto;
+    padding: 1rem 0;
   }
   
   form {
-    padding: 0.75rem 1.5rem;
-    max-height: 60vh;
-    overflow-y: auto;
+    padding: 0.5rem 1rem;
   }
   .sign-up-form {
-    padding: 0.75rem 1.5rem;
-    max-height: 60vh;
-    overflow-y: auto;
+    padding: 0.5rem 1rem;
   }
   .image {
     display: none;
   }
   .panel .content {
     padding: 0.5rem 1rem;
-  }
-  .container {
-    padding: 1rem;
-    min-height: 100vh;
-    height: auto;
   }
   .container:before {
     bottom: 72%;
@@ -509,65 +494,70 @@ form.sign-in-form {
   
   /* Logo adjustments for mobile */
   .form-logo {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
   }
   
   .form-logo img {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
   }
   
   .panel-logo {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     gap: 0.5rem;
   }
   
   .panel-logo img {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
   }
   
   .panel-logo h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   
   .title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .tit {
     font-size: 1.3rem;
     margin-bottom: 0.4rem;
   }
   
+  .tit {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+  
   .tit b {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
   }
   
   .input-field {
-    height: 45px;
-    margin: 0.4rem 0;
+    height: 42px;
+    margin: 0.3rem 0;
   }
   
   .input-field i {
-    line-height: 45px;
-    font-size: 0.9rem;
+    line-height: 42px;
+    font-size: 0.85rem;
   }
   
   .input-field input {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .btn {
-    width: 120px;
-    height: 40px;
-    font-size: 0.85rem;
-    margin: 0.5rem 0;
+    width: 110px;
+    height: 38px;
+    font-size: 0.8rem;
+    margin: 0.4rem 0;
   }
   
   .for {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+  }
+  
+  /* Compact spacing */
+  .signin-signup {
+    padding: 0.5rem 0;
   }
 }
 /* OTP Verification Styles */
