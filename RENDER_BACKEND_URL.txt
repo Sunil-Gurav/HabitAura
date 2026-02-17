@@ -1,0 +1,7 @@
+After deploying on Render, paste your backend URL here:
+
+RENDER_BACKEND_URL=
+
+Then I will update the frontend configuration files automatically.
+
+Example: https://habitspark-backend.onrender.com
