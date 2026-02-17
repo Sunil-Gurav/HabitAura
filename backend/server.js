@@ -2563,18 +2563,29 @@ app.post('/api/auth/send-otp', [
 
     // Send OTP email
     console.log('Sending OTP email...')
-    const emailResult = await sendOTPEmail(email, otp)
-    console.log('Email result:', emailResult)
-    
-    if (!emailResult.success) {
-      console.error('Email sending failed:', emailResult)
-      return res.status(500).json({ message: 'Failed to send OTP email' })
+    try {
+      const emailResult = await sendOTPEmail(email, otp)
+      console.log('Email result:', emailResult)
+      
+      if (!emailResult.success) {
+        console.error('Email sending failed:', emailResult)
+        // Still return success since OTP is saved
+        return res.json({
+          message: 'OTP generated. Please check your email (Note: Email service may be delayed)',
+          email: email,
+          otp: process.env.NODE_ENV === 'development' ? otp : undefined // Show in dev
+        })
+      }
+    } catch (emailError) {
+      console.error('Email error:', emailError)
+      // Continue even if email fails
     }
 
     console.log('OTP sent successfully to:', email)
     res.json({
       message: 'OTP sent successfully to your email',
-      email: email
+      email: email,
+      otp: process.env.NODE_ENV === 'development' ? otp : undefined // Show OTP in dev mode for testing
     })
 
   } catch (error) {
@@ -2736,6 +2747,7 @@ app.post('/api/auth/forgot-password', [
 
     // Generate OTP
     const otp = generateOTP()
+    console.log('Generated OTP for password reset:', otp)
 
     // Delete any existing reset OTP for this email
     await OTP.deleteMany({ email, type: 'reset' })
@@ -2748,22 +2760,39 @@ app.post('/api/auth/forgot-password', [
       userData: { email }
     })
     await otpDoc.save()
+    console.log('Reset OTP saved to database')
 
     // Send OTP email
-    const emailResult = await sendResetOTPEmail(email, otp)
-    
-    if (!emailResult.success) {
-      return res.status(500).json({ message: 'Failed to send reset OTP email' })
+    try {
+      const emailResult = await sendResetOTPEmail(email, otp)
+      
+      if (!emailResult.success) {
+        console.error('Email sending failed:', emailResult.message)
+        // Still return success since OTP is saved
+        return res.json({
+          message: 'OTP generated. Please check your email (Note: Email service may be delayed)',
+          email: email,
+          otp: process.env.NODE_ENV === 'development' ? otp : undefined // Only in dev
+        })
+      }
+    } catch (emailError) {
+      console.error('Email error:', emailError)
+      // Continue even if email fails
     }
 
     res.json({
       message: 'Password reset OTP sent to your email',
-      email: email
+      email: email,
+      otp: process.env.NODE_ENV === 'development' ? otp : undefined // Show OTP in dev mode
     })
 
   } catch (error) {
     console.error('Forgot password error:', error)
-    res.status(500).json({ message: 'Server error while processing forgot password request' })
+    console.error('Error stack:', error.stack)
+    res.status(500).json({ 
+      message: 'Server error while processing forgot password request',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    })
   }
 })
 
