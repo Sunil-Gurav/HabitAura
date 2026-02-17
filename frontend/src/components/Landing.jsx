@@ -28,7 +28,7 @@ const Landing = () => {
       const token = localStorage.getItem('accessToken')
       if (token) {
         try {
-          await axios.get('${API_URL}/api/auth/me', {
+          await axios.get(`${API_URL}/api/auth/me`, {
             headers: {
               Authorization: `Bearer ${token}`
             }

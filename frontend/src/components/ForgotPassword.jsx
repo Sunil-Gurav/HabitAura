@@ -19,7 +19,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
     setMessage('')
 
     try {
-      await axios.post('${API_URL}/api/auth/forgot-password', { email })
+      await axios.post(`${API_URL}/api/auth/forgot-password`, { email })
       setMessage('OTP sent to your email successfully!')
       setStep(2)
     } catch (error) {
@@ -36,7 +36,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
     setMessage('')
 
     try {
-      await axios.post('${API_URL}/api/auth/verify-reset-otp', { email, otp })
+      await axios.post(`${API_URL}/api/auth/verify-reset-otp`, { email, otp })
       setMessage('OTP verified successfully!')
       setStep(3)
     } catch (error) {
@@ -64,7 +64,7 @@ const ForgotPassword = ({ isOpen, onClose }) => {
     setMessage('')
 
     try {
-      await axios.post('${API_URL}/api/auth/reset-password', {
+      await axios.post(`${API_URL}/api/auth/reset-password`, {
         email,
         otp,
         newPassword
