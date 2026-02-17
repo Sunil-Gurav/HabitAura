@@ -384,7 +384,7 @@ const Dashboard = () => {
   const fetchAnalytics = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.get('${API_URL}/api/habits/analytics', {
+      const response = await axios.get(`${API_URL}/api/habits/analytics`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setAnalytics(response.data)
@@ -416,7 +416,7 @@ const Dashboard = () => {
   const fetchGoalAnalytics = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.get('${API_URL}/api/goals/analytics', {
+      const response = await axios.get(`${API_URL}/api/goals/analytics`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setGoalAnalytics(response.data)
@@ -447,7 +447,7 @@ const Dashboard = () => {
   const fetchPointsHistory = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.get('${API_URL}/api/rewards/points', {
+      const response = await axios.get(`${API_URL}/api/rewards/points`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setPointsHistory(response.data.history)
@@ -484,7 +484,7 @@ const Dashboard = () => {
   const fetchJournalAnalytics = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.get('${API_URL}/api/journal/analytics', {
+      const response = await axios.get(`${API_URL}/api/journal/analytics`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setJournalAnalytics(response.data)
@@ -497,7 +497,7 @@ const Dashboard = () => {
   const fetchUserSettings = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.get('${API_URL}/api/auth/settings', {
+      const response = await axios.get(`${API_URL}/api/auth/settings`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       if (response.data.settings) {
@@ -511,7 +511,7 @@ const Dashboard = () => {
   const updateUserSettings = async (settingsUpdate) => {
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.put('${API_URL}/api/auth/settings', settingsUpdate, {
+      await axios.put(`${API_URL}/api/auth/settings`, settingsUpdate, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -598,7 +598,7 @@ const Dashboard = () => {
         }
       })
       
-      const response = await axios.put('${API_URL}/api/auth/profile', dataToSend, {
+      const response = await axios.put(`${API_URL}/api/auth/profile`, dataToSend, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -671,7 +671,7 @@ const Dashboard = () => {
     
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.put('${API_URL}/api/auth/change-password', {
+      await axios.put(`${API_URL}/api/auth/change-password`, {
         currentPassword: passwordData.currentPassword,
         newPassword: passwordData.newPassword
       }, {
@@ -724,7 +724,7 @@ const Dashboard = () => {
     
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.delete('${API_URL}/api/auth/account', {
+      await axios.delete(`${API_URL}/api/auth/account`, {
         headers: { Authorization: `Bearer ${token}` },
         data: { password: deleteAccountData.password }
       })
@@ -750,7 +750,7 @@ const Dashboard = () => {
         exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Exporting...'
       }
       
-      const response = await axios.get('${API_URL}/api/auth/export-data', {
+      const response = await axios.get(`${API_URL}/api/auth/export-data`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1027,7 +1027,7 @@ const Dashboard = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.post('${API_URL}/api/habits', newHabit, {
+      await axios.post(`${API_URL}/api/habits`, newHabit, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1148,7 +1148,7 @@ const Dashboard = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.post('${API_URL}/api/goals', newGoal, {
+      await axios.post(`${API_URL}/api/goals`, newGoal, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1289,7 +1289,7 @@ const Dashboard = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('accessToken')
-      await axios.post('${API_URL}/api/rewards', newReward, {
+      await axios.post(`${API_URL}/api/rewards`, newReward, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
@@ -1406,7 +1406,7 @@ const Dashboard = () => {
         tomorrowGoals: newJournal.tomorrowGoals.filter(item => item.trim() !== '')
       }
       
-      const response = await axios.post('${API_URL}/api/journal', journalData, {
+      const response = await axios.post(`${API_URL}/api/journal`, journalData, {
         headers: { Authorization: `Bearer ${token}` }
       })
       
